@@ -7,6 +7,7 @@ let books = [
     "price": 25.99,
     "publishedYear": 1937,
     "genre": "Fantasy",
+    "image": "img/derHobbit.jpg",
     "comments": [
       {
         "name": "TolkienFan",
@@ -26,6 +27,7 @@ let books = [
     "price": 18.50,
     "publishedYear": 1979,
     "genre": "Fantasy",
+    "image": "img/unendlicheGeschichte.jpg",
     "comments": [
       {
         "name": "EndeLiebhaber",
@@ -45,6 +47,7 @@ let books = [
     "price": 21.99,
     "publishedYear": 2002,
     "genre": "Fantasy",
+    "image": "img/eragon.jpg",
     "comments": [
       {
         "name": "Drachenreiter",
@@ -64,6 +67,7 @@ let books = [
     "price": 24.99,
     "publishedYear": 2008,
     "genre": "Dystopie",
+    "image": "img/tributeVonPanem.jpg",
     "comments": [
       {
         "name": "KatnissFan",
@@ -83,6 +87,7 @@ let books = [
     "price": 19.90,
     "publishedYear": 2010,
     "genre": "Krimi",
+    "image": "img/winterkartoffel.jpg",
     "comments": [
       {
         "name": "KrimiLiebhaber",
@@ -95,3 +100,5 @@ let books = [
     ]
   }
 ];
+
+console.log(books);
