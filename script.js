@@ -35,11 +35,11 @@ function getCommentsHTML(comments) {
         return '';
     }
     let commentsHTML = '<h4>Comments:</h4><div class="comment-section">';
-    for (let i = 0; i < comments.length; i++) {
+    for (let indexComments = 0; indexComments < comments.length; indexComments++) {
         commentsHTML += `
             <div class="comment">
-                <p>${comments[i].name}:</p>
-                <p>${comments[i].comment}</p>
+                <p>${comments[indexComments].name}:</p>
+                <p>${comments[indexComments].comment}</p>
             </div>
         `;
     }
