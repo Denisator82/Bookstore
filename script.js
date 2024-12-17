@@ -3,7 +3,6 @@ function init() {
     insertBooks();
 }
 
-// Funktion, die alle Bücher auf der Startseite anzeigt
 function insertBooks() {
     let contentRef = document.getElementById('booksGallery');
     contentRef.innerHTML = "";
@@ -12,7 +11,6 @@ function insertBooks() {
     }
 }
 
-// Funktion, die das HTML eines Buchs zurückgibt
 function getBookHTML(indexBook) {
     let book = books[indexBook];
     return `
@@ -29,7 +27,6 @@ function getBookHTML(indexBook) {
     `;
 }
 
-// Funktion, die das HTML der Kommentare eines Buchs zurückgibt
 function getCommentsHTML(comments) {
     if (!comments || comments.length === 0) {
         return '';
@@ -46,3 +43,5 @@ function getCommentsHTML(comments) {
     commentsHTML += '</div>'; // Schließe den Kommentar-Bereich
     return commentsHTML;
 }
+
+
