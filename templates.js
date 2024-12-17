@@ -1,12 +1,14 @@
 const bookTemplate = `
     <div class="book">
         <h3>{{name}}</h3>
-        <img src="{{image}}" alt="{{name}}">
         <p>Author: {{author}}</p>
-        <p>Year: {{publishedYear}}</p>
-        <p>Price: {{price}} €</p>
-        <p>Likes: {{likes}}</p>
+        <img src="{{image}}" alt="{{name}}">
+        
+        <p class="Likes">{{likes}}</p>
+        <p>Year: {{publishedYear}}
         <p>Genre: {{genre}}</p>
+        
+        <h4 class="price">Price: {{price}} €</h4>
         <h4>Comments:</h4>
         <div class="comment-section">
             {{comments}}
@@ -17,7 +19,7 @@ const bookTemplate = `
 
 const commentTemplate = `
     <div class="comment">
-        <p>{{name}}:</p>
+        <h4>{{name}}:</h4>
         <p>{{comment}}</p>
     </div>
 `;

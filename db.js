@@ -40,7 +40,7 @@ let books = [
     ]
   },
   {
-    "name": "Eragon: Das Vermächtnis der Drachenreiter",
+    "name": "Eragon - Das Vermächtnis der Drachenreiter",
     "author": "Christopher Paolini",
     "likes": 1750,
     "liked": true,
@@ -80,7 +80,7 @@ let books = [
     ]
   },
   {
-    "name": "Winterkartoffelknödel: Ein Provinzkrimi",
+    "name": "Winterkartoffelknödel - Ein Provinzkrimi",
     "author": "Rita Falk",
     "likes": 1450,
     "liked": true,
