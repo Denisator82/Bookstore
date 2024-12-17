@@ -7,7 +7,7 @@ function insertBooks() {
             .replace('{{image}}', books[indexBook].image)
             .replace('{{author}}', books[indexBook].author)
             .replace('{{publishedYear}}', books[indexBook].publishedYear)
-            .replace('{{price}}', books[indexBook].price)
+            .replace('{{price}}', books[indexBook].price.toFixed)
             .replace('{{likes}}', books[indexBook].likes)
             .replace('{{genre}}', books[indexBook].genre)
             .replace('{{index}}', indexBook);
@@ -22,7 +22,7 @@ function insertBooks() {
 
         contentRef.innerHTML += bookHTML;
     }
-}
+};
 
 function addComment(bookIndex) {
     let name = document.getElementById(`commentName-${bookIndex}`).value;
@@ -32,8 +32,8 @@ function addComment(bookIndex) {
         books[bookIndex].comments.push({ name: name, comment: text });
         insertBooks(); // Aktualisiere die Bücheranzeige, um den neuen Kommentar zu zeigen
     }
-}
+};
 
 function init() {
     insertBooks();
-}
+};

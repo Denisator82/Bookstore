@@ -98,7 +98,5 @@ let books = [
         "comment": "Tolle Charaktere und eine herrlich bayrische Atmosphäre."
       }
     ]
-  }
+  },
 ];
-
-console.log(books);
