@@ -1,3 +1,7 @@
+function init() {
+    insertBooks();
+};
+
 function insertBooks() {
     let contentRef = document.getElementById('booksGallery');
     contentRef.innerHTML = "";
@@ -7,16 +11,16 @@ function insertBooks() {
             .replace('{{image}}', books[indexBook].image)
             .replace('{{author}}', books[indexBook].author)
             .replace('{{publishedYear}}', books[indexBook].publishedYear)
-            .replace('{{price}}', books[indexBook].price.toFixed)
+            .replace('{{price}}', books[indexBook].price.toFixed(2))
             .replace('{{likes}}', books[indexBook].likes)
             .replace('{{genre}}', books[indexBook].genre)
-            .replace('{{index}}', indexBook);
+            .replace(/{{index}}/g,indexBook);
 
         // Lade und ersetze Kommentare
         let commentsHTML = '';
-        for (let indexComments = 0; indexComments < books[indexBook].comments.length; indexComments++) {
-            commentsHTML += commentTemplate.replace('{{name}}', books[indexBook].comments[indexComments].name)
-                .replace('{{comment}}', books[indexBook].comments[indexComments].comment);
+        for (let comment of books[indexBook].comments) {
+            commentsHTML += commentTemplate.replace('{{name}}', comment.name)
+                .replace('{{comment}}', comment.comment);
         }
         bookHTML = bookHTML.replace('{{comments}}', commentsHTML);
 
@@ -30,10 +34,10 @@ function addComment(bookIndex) {
 
     if (name && text) {
         books[bookIndex].comments.push({ name: name, comment: text });
-        insertBooks(); // Aktualisiere die Bücheranzeige, um den neuen Kommentar zu zeigen
+        insertBooks(); // Aktualisiere die Bücheranzeige
+    } else {
+        console.log('Name oder Kommentar fehlt!'); // Debug-Ausgabe
     }
 };
 
-function init() {
-    insertBooks();
-};
+
