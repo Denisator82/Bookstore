@@ -40,7 +40,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .book {
@@ -58,9 +58,8 @@ h2 {
 .book img {
     align-self: center;
     max-width: 100%;
-    height: 250px;
+    
     object-fit: cover;
-    border-bottom: 1px solid #ddd;
 }
 
 .book h3 {
@@ -72,8 +71,10 @@ h2 {
 .Likes {
     display: flex;
     justify-content: space-between;
-    padding-right: 15px;                 
     align-items: center;
+    padding: 15px 15px 0px 0px;
+    margin-top: auto; /* Stellt sicher, dass die Likes-Sektion immer am Ende des Buchcontainers steht */
+    border-top: 1px solid #ddd; /* Optional: Abgrenzung zur oberen Sektion */
 }
 
 .Likes p {
@@ -81,14 +82,44 @@ h2 {
     font-size: 16px;                 
 }
 
-.like-btn .heart {
-    font-size: 24px;
-    transition: color 0.3s ease; /* Sanfte Übergänge für die Farbanpassung */
-    color: #ccc; /* Standardfarbe, wenn nicht geliked */
+.like-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.like-btn .heart.liked {
-    color: red; /* Farbe, wenn das Herz geliked ist */
+.heart-icon {
+    position: absolute; /* Überlappen der Icons */
+    top: 0;
+    left: 0;
+    width: 100%; /* Icon nimmt die gesamte Button-Größe ein */
+    height: 100%;
+    transition: opacity 0.3s ease; /* Sanfter Übergang */
+}
+
+.heart-icon.filled {
+    opacity: 0; /* Gefülltes Herz unsichtbar */
+    transition: opacity 0.3s ease; /* Sanfter Übergang */
+}
+
+.heart-icon.empty {
+    opacity: 1; /* Leeres Herz sichtbar */
+    transition: opacity 0.3s ease; /* Sanfter Übergang */
+}
+
+.like-btn.liked .heart-icon.filled {
+    opacity: 1; /* Gefülltes Herz sichtbar, wenn geliked */
+}
+
+.like-btn.liked .heart-icon.empty {
+    opacity: 0; /* Leeres Herz unsichtbar, wenn geliked */
 }
 
 .price {
@@ -98,8 +129,8 @@ h2 {
     border-bottom: 5px solid rgb(105, 105, 105);
     padding-bottom: 10px;
     margin-top: 0px 15px 0px 15px;
-
 }
+
 .book p {
     margin: 10px 15px;
 }
@@ -166,4 +197,25 @@ footer {
     padding: 15px 0;
     width: 100%;
 }
+/* Media Query für Bildschirmbreite von maximal 320px */
+@media (max-width: 420px) {
+    .book {
+        width: 300px;
+        height: auto;
+    }
 
+    .book img {
+        height: 200px;
+    }
+
+    .Likes {
+        flex-direction: column;
+        padding: 10px;
+        width: 300px;
+    }
+
+    .like-btn {
+        width: 25px;
+        height: 25px;
+    }
+}

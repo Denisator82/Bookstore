@@ -1,12 +1,13 @@
 const bookTemplate = `
     <div class="book">
         <h3>{{name}}</h3>
-        <p>Author: {{author}}</p>
-        <img src="{{image}}" alt="{{name}}">
-        <div class="Likes">
+            <p>Author: {{author}}</p>
+            <img src="{{image}}"alt="{{name}}">
+            <div class="Likes">
             <p>Likes: {{likes}}</p>
-            <button onclick="toggleLike({{index}})" class="like-btn">
-                <span class="heart {{liked ? 'liked' : ''}}">❤️</span>
+            <button onclick="toggleLike({{index}})" class="like-btn {{likedClass}}">
+                <img src="img/heart-filled.svg" alt="Filled Heart" class="heart-icon filled" />
+                <img src="img/heart-empty.svg" alt="Empty Heart" class="heart-icon empty" />
             </button>
         </div>
         <p>Year: {{publishedYear}}</p>

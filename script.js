@@ -8,8 +8,8 @@ function createBookHTML(book, indexBook) {
         .replace('{{price}}', book.price.toFixed(2))
         .replace('{{likes}}', book.likes)
         .replace('{{genre}}', book.genre)
-        .replace(/{{index}}/g, indexBook)
-        .replace('{{likedClass}}', book.liked ? 'liked' : ''); // Hier wird die "liked" Klasse hinzugefügt
+        .replace('{{likedClass}}', book.liked ? 'liked' : '')
+        .replace(/{{index}}/g, indexBook);
 }
 
 // Funktion zum Rendern der Kommentare eines Buches
@@ -37,46 +37,32 @@ function renderBooks() {
 
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         let book = books[indexBook];
-
-        // Erstelle HTML für das Buch
-        let bookHTML = createBookHTML(book, indexBook);
-
-        // Kommentare für das Buch hinzufügen
-        let commentsHTML = renderComments(book.comments);
-
-        // Füge die Kommentare zum Buch-HTML hinzu
-        bookHTML = bookHTML.replace('{{comments}}', commentsHTML);
-
-        // Füge das Buch HTML zu der gesamten HTML-Struktur hinzu
-        allBooksHTML += bookHTML;
+        let bookHTML = createBookHTML(book, indexBook); // Erstelle HTML für das Buch
+        let commentsHTML = renderComments(book.comments); // Kommentare für das Buch hinzufügen
+        bookHTML = bookHTML.replace('{{comments}}', commentsHTML); // Füge die Kommentare zum Buch-HTML hinzu
+        allBooksHTML += bookHTML; // Füge das Buch HTML zu der gesamten HTML-Struktur hinzu
     }
-
-    // Füge alle Bücher auf einmal zum DOM hinzu
-    contentRef.innerHTML = allBooksHTML;
+    contentRef.innerHTML = allBooksHTML; // Füge alle Bücher auf einmal zum DOM hinzu
 }
 
 // Funktionen für die Interaktion
 function addComment(bookIndex) {
     let name = document.getElementById(`commentName-${bookIndex}`).value;
     let text = document.getElementById(`commentText-${bookIndex}`).value;
-
     if (name && text) {
         books[bookIndex].comments.push({ name: name, comment: text });
-        renderBooks(); // Aktualisiere die Bücheranzeige
+        renderBooks();
     }
-};
+}
 
 function toggleLike(bookIndex) {
     const book = books[bookIndex];
-
-    // Toggle der liked-Status
     book.liked = !book.liked;
-
-    // Anzahl der Likes anpassen
     if (book.liked) {
         book.likes++;
     } else {
         book.likes--;
     }
     renderBooks();
+    console.log(book.liked)
 }
