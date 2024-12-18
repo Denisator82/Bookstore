@@ -2,7 +2,7 @@ const bookTemplate = `
     <div class="book">
         <h3>{{name}}</h3>
             <p>Author: {{author}}</p>
-            <img src="{{image}}"alt="{{name}}">
+            <img class="bookImage" src="{{image}}"alt="{{name}}">
             <div class="Likes">
             <p>Likes: {{likes}}</p>
             <button onclick="toggleLike({{index}})" class="like-btn {{likedClass}}">
