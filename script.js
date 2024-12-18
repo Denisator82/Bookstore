@@ -1,32 +1,39 @@
 function init() {
-    insertBooks();
+    renderBooks();
 };
 
-function insertBooks() {
+function renderBooks() {
     let contentRef = document.getElementById('booksGallery');
-    contentRef.innerHTML = "";
+    contentRef.innerHTML = ""; // Galerie leeren
 
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
-        let bookHTML = bookTemplate.replace('{{name}}', books[indexBook].name)
-            .replace('{{image}}', books[indexBook].image)
-            .replace('{{author}}', books[indexBook].author)
-            .replace('{{publishedYear}}', books[indexBook].publishedYear)
-            .replace('{{price}}', books[indexBook].price.toFixed(2))
-            .replace('{{likes}}', books[indexBook].likes)
-            .replace('{{genre}}', books[indexBook].genre)
-            .replace(/{{index}}/g,indexBook);
+        let book = books[indexBook];
+        let bookHTML = bookTemplate
+            .replace('{{name}}', book.name)
+            .replace('{{image}}', book.image)
+            .replace('{{author}}', book.author)
+            .replace('{{publishedYear}}', book.publishedYear)
+            .replace('{{price}}', book.price.toFixed(2))
+            .replace('{{likes}}', book.likes)
+            .replace('{{genre}}', book.genre)
+            .replace(/{{index}}/g, indexBook)
+            .replace('{{liked ? "liked" : ""}}', books[indexBook].liked ? 'liked' : '');
 
-        // Lade und ersetze Kommentare
-        let commentsHTML = '';
-        for (let comment of books[indexBook].comments) {
-            commentsHTML += commentTemplate.replace('{{name}}', comment.name)
+        // Kommentare einfügen
+        let commentsHTML = "";
+        for (let indexComment = 0; indexComment < book.comments.length; indexComment++) {
+            let comment = book.comments[indexComment];
+            commentsHTML += commentTemplate
+                .replace('{{name}}', comment.name)
                 .replace('{{comment}}', comment.comment);
         }
         bookHTML = bookHTML.replace('{{comments}}', commentsHTML);
 
+        // HTML zum DOM hinzufügen
         contentRef.innerHTML += bookHTML;
     }
-};
+}
+
 
 function addComment(bookIndex) {
     let name = document.getElementById(`commentName-${bookIndex}`).value;
@@ -34,10 +41,23 @@ function addComment(bookIndex) {
 
     if (name && text) {
         books[bookIndex].comments.push({ name: name, comment: text });
-        insertBooks(); // Aktualisiere die Bücheranzeige
-    } else {
-        console.log('Name oder Kommentar fehlt!'); // Debug-Ausgabe
+        renderBooks(); // Aktualisiere die Bücheranzeige
     }
 };
 
+function toggleLike(bookIndex) {
+    const book = books[bookIndex];
 
+    // Toggle der liked-Status
+    book.liked = !book.liked;
+
+    // Anzahl der Likes anpassen
+    if (book.liked) {
+        book.likes++;
+    } else {
+        book.likes--;
+    }
+
+    // Bücher neu rendern
+    renderBooks();
+}

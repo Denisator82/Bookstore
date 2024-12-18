@@ -70,8 +70,24 @@ h2 {
 }
 
 .Likes {
-    display: flex;
-    justify-content: flex-end;
+    display: flex;                  /* Verwende Flexbox */
+    align-items: center;            /* Vertikale Ausrichtung der Elemente */
+    gap: 10px;                      /* Abstand zwischen dem Text und dem Herz */
+}
+
+.Likes p {
+    margin: 0;                      /* Entferne Margin von <p>, um den Abstand zu kontrollieren */
+    font-size: 16px;                 /* Du kannst die Schriftgröße nach Belieben anpassen */
+}
+
+.like-btn .heart {
+    font-size: 24px;
+    transition: color 0.3s ease; /* Sanfte Übergänge für die Farbanpassung */
+    color: #ccc; /* Standardfarbe, wenn nicht geliked */
+}
+
+.like-btn .heart.liked {
+    color: red; /* Farbe, wenn das Herz geliked ist */
 }
 
 .price {
@@ -106,14 +122,14 @@ h2 {
 }
 
 .comment-form {
-    margin-top: 10px;
+    margin: 10px 15px 15px 15px;
     border-top: 1px solid #ddd;
     padding-top: 10px;
 }
 
 .comment-form input,
 .comment-form textarea {
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
