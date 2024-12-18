@@ -70,14 +70,15 @@ h2 {
 }
 
 .Likes {
-    display: flex;                  /* Verwende Flexbox */
-    align-items: center;            /* Vertikale Ausrichtung der Elemente */
-    gap: 10px;                      /* Abstand zwischen dem Text und dem Herz */
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;                 
+    align-items: center;
 }
 
 .Likes p {
-    margin: 0;                      /* Entferne Margin von <p>, um den Abstand zu kontrollieren */
-    font-size: 16px;                 /* Du kannst die Schriftgröße nach Belieben anpassen */
+    margin: 0;                      
+    font-size: 16px;                 
 }
 
 .like-btn .heart {
