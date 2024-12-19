@@ -202,7 +202,18 @@ footer {
     width: 100%;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 425px) {
+    header h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+    
+    h2 {
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+    }
+
     .mainsection {
         padding: 0;
     }

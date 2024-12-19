@@ -1,5 +1,5 @@
 const bookTemplate = `
-    <div class="book">
+    <div id="book-{{Id}}" class="book">
         <h3>{{name}}</h3>
             <p>Author: {{author}}</p>
             <img class="bookImage" src="{{image}}"alt="{{name}}">

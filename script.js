@@ -1,6 +1,7 @@
 // Funktion zum Erstellen des Buch-HTMLs
 function createBookHTML(book, indexBook) {
     return bookTemplate
+        .replace('{{Id}}', book.id)
         .replace('{{name}}', book.name)
         .replace('{{image}}', book.image)
         .replace('{{author}}', book.author)
@@ -9,7 +10,7 @@ function createBookHTML(book, indexBook) {
         .replace('{{likes}}', book.likes)
         .replace('{{genre}}', book.genre)
         .replace('{{likedClass}}', book.liked ? 'liked' : '')
-        .replace(/{{index}}/g, indexBook);
+        .replace('{{comments}}', ''); // Kommentare separat rendern
 }
 
 // Funktion zum Rendern der Kommentare eines Buches
@@ -37,32 +38,40 @@ function renderBooks() {
 
     for (let indexBook = 0; indexBook < books.length; indexBook++) {
         let book = books[indexBook];
-        let bookHTML = createBookHTML(book, indexBook); // Erstelle HTML für das Buch
-        let commentsHTML = renderComments(book.comments); // Kommentare für das Buch hinzufügen
-        bookHTML = bookHTML.replace('{{comments}}', commentsHTML); // Füge die Kommentare zum Buch-HTML hinzu
-        allBooksHTML += bookHTML; // Füge das Buch HTML zu der gesamten HTML-Struktur hinzu
+        let bookHTML = createBookHTML(book, indexBook) // Erstelle HTML für das Buch
+            .replace('{{comments}}', renderComments(book.comments)); // Kommentare hinzufügen
+        allBooksHTML += `<div id="book-${book.id}" class="book">${bookHTML}</div>`;
     }
     contentRef.innerHTML = allBooksHTML; // Füge alle Bücher auf einmal zum DOM hinzu
 }
 
-// Funktionen für die Interaktion
 function addComment(bookIndex) {
-    let name = document.getElementById(`commentName-${bookIndex}`).value;
-    let text = document.getElementById(`commentText-${bookIndex}`).value;
+    const name = document.getElementById(`commentName-${bookIndex}`).value;
+    const text = document.getElementById(`commentText-${bookIndex}`).value;
+
     if (name && text) {
+        // Neuer Kommentar wird zu den Daten hinzugefügt
         books[bookIndex].comments.push({ name: name, comment: text });
-        renderBooks();
+
+        // Aktualisiert nur den Kommentarbereich des Buches
+        const commentsElement = document.querySelector(`#book-${books[bookIndex].id} .comments`);
+        commentsElement.innerHTML = renderComments(books[bookIndex].comments);
+
+        // Felder leeren
+        document.getElementById(`commentName-${bookIndex}`).value = "";
+        document.getElementById(`commentText-${bookIndex}`).value = "";
     }
 }
 
+// Funktionen für die Interaktion
 function toggleLike(bookIndex) {
     const book = books[bookIndex];
     book.liked = !book.liked;
-    if (book.liked) {
-        book.likes++;
-    } else {
-        book.likes--;
-    }
-    renderBooks();
-    console.log(book.liked)
+    book.likes += book.liked ? 1 : -1;
+
+    // Nur das betroffene Buch aktualisieren
+    const bookElement = document.querySelector(`#book-${book.id}`);
+    const updatedBookHTML = createBookHTML(book, bookIndex)
+        .replace('{{comments}}', renderComments(book.comments));
+    bookElement.outerHTML = updatedBookHTML; // Ersetze das Buch-HTML
 }

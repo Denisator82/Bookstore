@@ -1,5 +1,6 @@
 const books = [
   {
+    "id": 'book1', //Eindeutige ID vergabe um spezifisch zu laden
     "name": "Der Hobbit",
     "author": "J.R.R. Tolkien",
     "likes": 2500,
@@ -20,6 +21,7 @@ const books = [
     ]
   },
   {
+    "id": 'book2',
     "name": "Die unendliche Geschichte",
     "author": "Michael Ende",
     "likes": 2000,
@@ -40,6 +42,7 @@ const books = [
     ]
   },
   {
+    "id": 'book3',
     "name": "Eragon - Das Vermächtnis der Drachenreiter",
     "author": "Christopher Paolini",
     "likes": 1750,
@@ -60,6 +63,7 @@ const books = [
     ]
   },
   {
+    "id": 'book4',
     "name": "Die Tribute von Panem - Tödliche Spiele",
     "author": "Suzanne Collins",
     "likes": 3000,
@@ -80,6 +84,7 @@ const books = [
     ]
   },
   {
+    "id": 'book5', 
     "name": "Winterkartoffelknödel - Ein Provinzkrimi",
     "author": "Rita Falk",
     "likes": 1450,
